@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: nginx
+spec:
+  hosts:
+    - "to-kustomize"
+  gateways:
+    - istio-ingress/ingressgateway
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: nginx
+            port:
+              number: 80

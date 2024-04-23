@@ -1,0 +1,13 @@
+resources:
+  - ../kustomize.io/base
+namespace: old-my-app-com
+images:
+  - name: nginx
+    newTag: 1.7.11
+patches:
+  - patch: |-
+      - op: replace
+        path: /spec/hosts/0
+        value: "old.my-app.com"
+    target:
+      kind: VirtualService
